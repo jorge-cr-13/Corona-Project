@@ -30,7 +30,7 @@ export class BarchartComponent implements OnInit {
   coronita;
   country:string;
   slug:string;
-  
+  day_seven = this.service.generate7Day();
 
   async ngOnInit(): Promise<void> {
 
@@ -60,34 +60,29 @@ export class BarchartComponent implements OnInit {
       // Code for retrieving the data for a specific country
       this.slug = await this.service.getSlug(this.country)
       this.coronita = await this.service.getDailyCounData(this.slug);
+      let j = 0;
       let dts:number;
       let rcv:number;
       let cnfrmd:number; 
-      let dailyData: String;
-
-      for(let i = 0; i< 7 ;i++){
-        dailyData = this.coronita[i]["Date"];
-        dts = this.coronita[i]["Deaths"];
-        rcv = this.coronita[i]["Recovered"];
-        cnfrmd = this.coronita[i]["Confirmed"];
-        while(this.coronita[i]["Date"] == this.coronita[i+1]["Date"]){
-          dts= dts + this.coronita[i+1]["Deaths"];
-          rcv= rcv +this.coronita[i+1]["Recovered"];
-          cnfrmd = cnfrmd+ this.coronita[i+1]["Confirmed"];
-          i= i + 1;
-          if(i == this.coronita.length-1){
-            break;
-          }
-        }
-        let date = (this.coronita[i]["Date"]).split("-");
+      while(this.coronita[j]["Date"]!=this.genDay7URI(this.day_seven)){
+        j += 1;
+      } 
+      while(j != this.coronita.length){
+        this.dtDts.push(this.coronita[j]["Deaths"]-this.coronita[j-1]["Deaths"])
+        this.dtRcv.push(this.coronita[j]["Recovered"]-this.coronita[j-1]["Recovered"])
+        this.dtCss.push(this.coronita[j]["Confirmed"]-this.coronita[j-1]["Confirmed"])
+        let date = (this.coronita[j]["Date"]).split("-");
         let dateMon = date[2].split("T");
         let day = dateMon[0];
         let month=date[1];
         this.barChartLabels.push(day.toString()+"/"+month.toString())
-        this.dtDts.push(dts)
-        this.dtRcv.push(rcv)
-        this.dtCss.push(cnfrmd)
+        j +=1
+
       }
     }
+  }
+
+  genDay7URI(day7) {
+    return day7[2]+"-"+day7[1]+"-"+day7[0]+"T00:00:00Z"
   }
 }

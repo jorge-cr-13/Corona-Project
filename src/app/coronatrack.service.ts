@@ -47,12 +47,12 @@ export class CoronatrackService {
      // Bar graph information for countries retrieval function
      async getDailyCounData(slug:string){
        let coroDai;
-       await this.http.get(this.generateDailyUrlCntr(slug)).toPromise().then(data =>
+       await this.http.get(this.generateDailyUrlCntr1(slug)).toPromise().then(data =>
          coroDai = data);
        return coroDai
      }
  
-       // Line graph information retrieval function
+    // Line graph information retrieval function
  
    async getMonthlyData(){
      let coroMon;
@@ -62,12 +62,12 @@ export class CoronatrackService {
    }
  
    // Line graph information for countries retrieval function
-   async getMntCounData(slug:string){
-     let coroDai;
-     await this.http.get(await this.generateFrstMntUrlCntr(slug)).toPromise().then(data =>
-       coroDai = data);
-     return coroDai
-   }
+  //  async getMntCounData(slug:string){
+  //    let coroDai;
+  //    await this.http.get(await this.generateFrstMntUrlCntr(slug)).toPromise().then(data =>
+  //      coroDai = data);
+  //    return coroDai
+  //  }
  
    // 7th day before today calculation
    generate7Day(){
@@ -161,7 +161,7 @@ export class CoronatrackService {
      return coroCoun[i]['Slug']
    }
  
-  // Url creator for Country Daily API information, bar graph
+  //Url creator for Country Daily API information, bar graph
 //   generateDailyUrlCntr(slug:string){
 //    this.day7 = this.generate7Day()[0];
 //    if(this.day7 < 10){
@@ -178,7 +178,7 @@ export class CoronatrackService {
 //    return this.urlDaily
 //  }
 
- generateDailyUrlCntr(slug:string){
+ generateDailyUrlCntr1(slug:string){
   // this.day7 = this.generate7Day()[0];
   // if(this.day7 < 10){
   //   this.day7 = ("0"+this.day7).toString()
@@ -209,12 +209,12 @@ export class CoronatrackService {
  }
  
  // Url creator for Country Daily API information, bar graph
- async generateFrstMntUrlCntr(slug:string){
-   let dateFst = await this.cntrFrsCs(slug)
-   this.urlDaily = "https://api.covid19api.com/live/country/"+slug+"/status/confirmed/date/"
-   +dateFst
-   return this.urlDaily
- }
+//  async generateFrstMntUrlCntr(slug:string){
+//    let dateFst = await this.cntrFrsCs(slug)
+//    this.urlDaily = "https://api.covid19api.com/live/country/"+slug+"/status/confirmed/date/"
+//    +dateFst
+//    return this.urlDaily
+//  }
  // Update or add the country data into the firebase 
  updateCountryData(updCntr:Country){
    this.firestore.collection("Country").doc(updCntr.name).set({
@@ -248,7 +248,6 @@ export class CoronatrackService {
    // Retrieve the data from firebase and post in on the local storage
    async displayCnt(cntrNm:string){
      let updCountry;
-     console.log("dfahkas")
      let name, toDate;
      let totalCss, newCss, newRcv, totalDts,newDts, totalRcv;
      await this.firestore.collection("Country").doc(cntrNm).get().toPromise().then((doc) => {

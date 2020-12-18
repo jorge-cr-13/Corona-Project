@@ -77,18 +77,25 @@ export class GraphchartComponent implements OnInit {
     else{
       // Code for retrieving the data for a specific country
       this.slug = await this.service.getSlug(this.country)
-      this.coronita = await this.service.getMntCounData(this.slug);
+      this.coronita = await this.service.getDailyCounData(this.slug);
       let dts:number;
       let rcv:number;
       let cnfrmd:number; 
       let dailyData: String;
+      let j = 0;
+      let firstCase = await this.service.cntrFrsCs(this.slug)
+      console.log(firstCase)
+      console.log(this.coronita)
 
-      for(let i = 0; i < this.coronita.length; i++){
+      while(this.coronita[j]["Date"]!=firstCase){
+        j += 1
+      }
+      for(let i = j; i < this.coronita.length; i++){
         dailyData = this.coronita[i]["Date"];
         dts = this.coronita[i]["Deaths"];
         rcv = this.coronita[i]["Recovered"];
         cnfrmd = this.coronita[i]["Confirmed"];
-        while(this.coronita[i]["Date"] == this.coronita[i+1]["Date"]){
+        while((i+1) < this.coronita.length && this.coronita[i]["Date"] == this.coronita[i+1]["Date"]){
           dts= dts + this.coronita[i+1]["Deaths"];
           rcv= rcv +this.coronita[i+1]["Recovered"];
           cnfrmd = cnfrmd+ this.coronita[i+1]["Confirmed"];
