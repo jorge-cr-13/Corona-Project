@@ -44,10 +44,10 @@ export class CoronatrackService {
          coroDai = data);
        return coroDai
      }
-     // Bar graph information for countries retrieval function
+     // Bar and line graph information for countries retrieval function
      async getDailyCounData(slug:string){
        let coroDai;
-       await this.http.get(this.generateDailyUrlCntr1(slug)).toPromise().then(data =>
+       await this.http.get(this.generateDailyUrlCntr(slug)).toPromise().then(data =>
          coroDai = data);
        return coroDai
      }
@@ -61,13 +61,6 @@ export class CoronatrackService {
      return coroMon;
    }
  
-   // Line graph information for countries retrieval function
-  //  async getMntCounData(slug:string){
-  //    let coroDai;
-  //    await this.http.get(await this.generateFrstMntUrlCntr(slug)).toPromise().then(data =>
-  //      coroDai = data);
-  //    return coroDai
-  //  }
  
    // 7th day before today calculation
    generate7Day(){
@@ -161,33 +154,9 @@ export class CoronatrackService {
      return coroCoun[i]['Slug']
    }
  
-  //Url creator for Country Daily API information, bar graph
-//   generateDailyUrlCntr(slug:string){
-//    this.day7 = this.generate7Day()[0];
-//    if(this.day7 < 10){
-//      this.day7 = ("0"+this.day7).toString()
-//    }
-//    this.mon7 = this.generate7Day()[1];
-//    if(this.mon7 < 10){
-//      this.mon7 = ("0"+this.mon7).toString()
-//    }
-//    this.yea7 = this.generate7Day()[2];
- 
-//    this.urlDaily = "https://api.covid19api.com/live/country/"+slug+"/status/confirmed/date/"
-//    +this.yea7+"-"+this.mon7+"-"+this.day7+"T00:00:00Z"
-//    return this.urlDaily
-//  }
+  //Url creator for Country Daily Data information, bar and line graph
 
- generateDailyUrlCntr1(slug:string){
-  // this.day7 = this.generate7Day()[0];
-  // if(this.day7 < 10){
-  //   this.day7 = ("0"+this.day7).toString()
-  // }
-  // this.mon7 = this.generate7Day()[1];
-  // if(this.mon7 < 10){
-  //   this.mon7 = ("0"+this.mon7).toString()
-  // }
-  // this.yea7 = this.generate7Day()[2];
+ generateDailyUrlCntr(slug:string){
 
   this.urlDaily = "https://api.covid19api.com/total/country/"+slug
   return this.urlDaily
@@ -208,13 +177,7 @@ export class CoronatrackService {
    return dateFst;
  }
  
- // Url creator for Country Daily API information, bar graph
-//  async generateFrstMntUrlCntr(slug:string){
-//    let dateFst = await this.cntrFrsCs(slug)
-//    this.urlDaily = "https://api.covid19api.com/live/country/"+slug+"/status/confirmed/date/"
-//    +dateFst
-//    return this.urlDaily
-//  }
+ 
  // Update or add the country data into the firebase 
  updateCountryData(updCntr:Country){
    this.firestore.collection("Country").doc(updCntr.name).set({
