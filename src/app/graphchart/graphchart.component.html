@@ -1,0 +1,10 @@
+<div *ngIf ="coronita" class="chart-wrapper style-graph">
+    <canvas baseChart width="4" height="1"
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels" 
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType" 
+        [plugins]="lineChartPlugins">
+    </canvas>
+</div>

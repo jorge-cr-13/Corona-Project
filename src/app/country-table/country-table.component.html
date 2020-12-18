@@ -1,0 +1,32 @@
+<table class="table text-center subtitle">
+    <thead align="center">
+    <tr class="table-active">
+        <th colspan="2">Corona Virus by Country</th>
+    </tr>
+    </thead>
+</table>
+<div *ngIf = 'coroCoun'>
+  <table id="tableSortExample" mdbTable class="table-country">
+    <thead>
+      <tr class="table-active">
+        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="coroCoun" [sortBy]="headElements[i]">{{head | titlecase}}
+          <mdb-icon fas icon="sort"></mdb-icon>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let el of coroCoun; let i = index">
+        <td class="table-active" ><a (click)="service.goCountry(el.Country)">{{el.Country}}</a></td>
+        <td class="table-warning">{{el.NewConfirmed}}</td>
+        <td class="table-warning">{{el.TotalConfirmed}}</td>
+        <td class="table-primary">{{el.NewRecovered}}</td>
+        <td class="table-primary">{{el.TotalRecovered}}</td>
+        <td class="table-danger">{{el.NewDeaths}}</td>
+        <td class="table-danger">{{el.TotalDeaths}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

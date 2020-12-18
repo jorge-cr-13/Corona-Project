@@ -1,0 +1,51 @@
+<table class="table text-center subtitle">
+    <thead align="center">
+    <tr class="table-active">
+        <th colspan="2">Add News</th>
+    </tr>
+    </thead>
+</table>
+<div class="table-style">
+    <form (ngSubmit)="addNews()">
+    <div class="row mb-3">
+        <div class="col-md-6">
+        <label for="dateInput">Date</label>
+        <input
+            type="date"
+            id="dateInput"
+            name="dateInput"
+            class="form-control"
+            [(ngModel)]="date"
+            required
+        />
+        </div>
+        <div class="col-md-6">
+        <label for="titleInput">Title</label>
+        <input
+            type="text"
+            id="titleInput"
+            name="titleInput"
+            class="form-control"
+            placeholder="What is the News?"
+            [(ngModel)]="title"
+            required
+        />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+        <label for="urlInput">Url</label>
+        <input
+            type="text"
+            id="urlInput"
+            name="urlInput"
+            class="form-control"
+            placeholder="What is the URL to the news?"
+            [(ngModel)]="url"
+            required
+        />
+        </div>
+    </div>
+    <button class="btn btn-primary">Add</button>
+    </form>
+</div>

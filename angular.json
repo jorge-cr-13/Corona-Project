@@ -24,9 +24,23 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"},{
+                "input":"node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss"},{
+                "input":"node_modules/@fortawesome/fontawesome-free/scss/solid.scss"},{
+                "input":"node_modules/@fortawesome/fontawesome-free/scss/regular.scss"},{
+                "input":"node_modules/@fortawesome/fontawesome-free/scss/brands.scss"},{
+                "input":"node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"},{
+                "input":"node_modules/angular-bootstrap-md/assets/scss/mdb.scss"},{
+                "input":"node_modules/animate.css/animate.css"}
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"
+            ]
           },
           "configurations": {
             "production": {

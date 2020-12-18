@@ -1,0 +1,128 @@
+<p></p>
+<p></p>
+
+<div *ngIf = "service.userSignedIn() == true" class="col-sm-6">
+    <h3>{{ user.displayName }}</h3>
+</div>
+
+<button *ngIf = "service.userSignedIn() == false" class="btn btn-info" (click)="service.signInWithGoogle()" style="float: right;">
+    Sign In
+</button>
+<button *ngIf = "service.userSignedIn() == true" class="btn btn-info" (click)="service.signOut()" style="float: right;">
+    Sign Out
+</button>
+<div class=cent-j>
+    <h1 class=cent-j1>COVID-19</h1>
+    <p>Live Updates and Statistics</p>
+</div>
+
+<div *ngIf = 'disCntry'>
+    <table class="table text-center subtitle" >
+        <thead>
+        <tr class="table-active">
+            <th colspan="2">Corona Virus Summary in {{disCntry.name}}</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-info">
+                <th colspan="2"><a [routerLink]="['country']">Worldwide</a> > {{disCntry.name}}</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="div-table">
+        <table class="table table-hover table-j">
+            <tbody>
+            <tr class="table-primary">
+                <th scope="row">Total Cases</th>
+                <td>{{disCntry.totalCss}}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">New Cases</th>
+                <td>{{disCntry.newCss}}</td>
+            </tr>
+            <tr class="table-primary">
+                <th scope="row">Active Cases</th>
+                <td>{{actCs}}</td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">Total Recovered</th>
+                <td>{{disCntry.totalRcv}}</td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">New Recovered</th>
+                <td>{{disCntry.newRcv}}</td>
+            </tr>
+            <tr class="table-warning">
+                <th scope="row">Recovery Rate</th>
+                <td>{{rcvRt}}</td>
+            </tr>
+            <tr class="table-danger">
+                <th scope="row">Total Deaths</th>
+                <td>{{disCntry.totalDts}}</td>
+            </tr>
+            <tr class="table-danger">
+                <th scope="row">New Deaths</th>
+                <td>{{disCntry.newDts}}</td>
+            </tr>
+            <tr class="table-danger">
+                <th scope="row">Mortality Rate</th>
+                <td>{{mrtRt}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+
+    
+    <table class="table text-center subtitle">
+        <thead align="center">
+        <tr class="table-active">
+            <th colspan="2">Corona Virus News in {{disCntry.name}}</th>
+        </tr>
+        </thead>
+    </table>
+    <app-news-feed></app-news-feed>
+    <div *ngIf = "service.userSignedIn() == true && privileged == true">
+    <app-news-add></app-news-add>
+    <p></p>
+    </div>
+
+    <table class="table text-center subtitle">
+        <thead align="center">
+        <tr class="table-active">
+            <th colspan="2">Corona Virus Distribution {{disCntry.name}}</th>
+        </tr>
+        </thead>
+    </table>
+
+    <app-piechart></app-piechart>
+
+    <table class="table text-center subtitle">
+        <thead align="center">
+        <tr class="table-active">
+            <th colspan="2">Daily Corona Virus {{disCntry.name}}</th>
+        </tr>
+        </thead>
+    </table>
+
+
+    <app-barchart></app-barchart>
+
+    <table class="table text-center subtitle">
+        <thead align="center">
+        <tr class="table-active">
+            <th colspan="2">Total Corona Virus Cases {{disCntry.name}}</th>
+        </tr>
+        </thead>
+    </table>
+    <app-graphchart></app-graphchart>
+</div>
+
+<table class="table text-center subtitle">
+    <thead align="center">
+    <tr class="table-active">
+        <th>DataSource: <a href="https://covid19api.com">COVID-19 API/ John Hopkins CSSE</a></th>
+    </tr>
+    </thead>
+</table>
