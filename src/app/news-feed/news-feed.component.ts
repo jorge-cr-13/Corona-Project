@@ -18,6 +18,7 @@ export class NewsFeedComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
 
+      // Code for displaying the news on each country or general
       this.route.params.subscribe(params =>
         this.country = params['id'])
   
@@ -27,6 +28,7 @@ export class NewsFeedComponent implements OnInit {
         this.route.params.subscribe(params =>
           this.country = params['id'])
       }
+      //Retrieve the news data
       this.service.getNews(this.country)
     .subscribe((news: News[])=>{
       this.news = news;

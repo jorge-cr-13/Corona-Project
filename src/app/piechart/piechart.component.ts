@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class PiechartComponent implements OnInit {
 
+  //Initial values for the piechart
   public chart: BaseChartDirective;
   public pieChartLabels = ['Death Cases', 'Active Cases', 'Recovered Cases'];
   public pieChartData = [];
@@ -35,6 +36,7 @@ export class PiechartComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    //Check the country or general data
     this.route.params.subscribe(params =>
       this.country = params['id'])
 
@@ -64,6 +66,7 @@ export class PiechartComponent implements OnInit {
       this.tlDts = this.coronita['Global']['TotalDeaths'];
       this.tlRcv = this.coronita['Global']['TotalRecovered'];
     }
+    //Setting the data needed for the graph
     this.actCs = this.tlCnfrmd - this.tlRcv - this.tlDts;
     this.pieChartData.push(this.tlDts);
     this.pieChartData.push(this.actCs);

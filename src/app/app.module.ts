@@ -5,7 +5,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule} from 'ng2-charts';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { BarchartComponent } from './barchart/barchart.component';
 import { CountryInfoComponent } from './country-info/country-info.component';
 import { CountryTableComponent } from './country-table/country-table.component';

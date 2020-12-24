@@ -20,6 +20,7 @@ export class NewsAddComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
 
+      //Settings for adding news on a specific country pager or general
       this.route.params.subscribe(params =>
         this.country = params['id'])
       if(typeof(this.country)=='undefined'){
@@ -29,6 +30,8 @@ export class NewsAddComponent implements OnInit {
           this.country = params['id'])
       }
   }
+
+  //Function to add news with title, date and url
   addNews(){
     let news: News = {
       date: new Date(this.date),

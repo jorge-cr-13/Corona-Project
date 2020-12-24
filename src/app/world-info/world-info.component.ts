@@ -9,6 +9,8 @@ import { User } from '../user.model';
   styleUrls: ['./world-info.component.css']
 })
 export class WorldInfoComponent implements OnInit {
+  
+  //Initial values for the general site
   nwCnfrmd :number;
   tlCnfrmd :number;
   nwDts: number;
@@ -27,13 +29,16 @@ export class WorldInfoComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    //Retrieve data from the user if it is logged in
     this.user = this.service.getUser();
     if(this.user == undefined){
       this.privileged = false;
     }else{
+      //Check wether the user has privilege rights for adding news
       this.privileged = await this.service.checkDev(this.user.email);
     }
   
+    //Retrieve and make calculations on the general data
     this.coronita = await this.service.getGeneralData()
     this.nwCnfrmd = this.coronita['Global']['NewConfirmed'];
     this.tlCnfrmd = this.coronita['Global']['TotalConfirmed'];

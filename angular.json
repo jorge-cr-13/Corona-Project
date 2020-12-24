@@ -26,14 +26,29 @@
             "styles": [
               "src/styles.css",
               {
-                "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"},{
-                "input":"node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss"},{
-                "input":"node_modules/@fortawesome/fontawesome-free/scss/solid.scss"},{
-                "input":"node_modules/@fortawesome/fontawesome-free/scss/regular.scss"},{
-                "input":"node_modules/@fortawesome/fontawesome-free/scss/brands.scss"},{
-                "input":"node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"},{
-                "input":"node_modules/angular-bootstrap-md/assets/scss/mdb.scss"},{
-                "input":"node_modules/animate.css/animate.css"}
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/solid.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/regular.scss"
+              },
+              {
+                "input": "node_modules/@fortawesome/fontawesome-free/scss/brands.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/assets/scss/mdb.scss"
+              },
+              {
+                "input": "node_modules/animate.css/animate.css"
+              }
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -133,6 +148,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Corona-Project"
+    }
+  },
+  "defaultProject": "Corona-Project",
+  "cli": {
+    "analytics": "7a11fb32-5272-40d1-972d-b7e0c1df592a"
+  }
 }

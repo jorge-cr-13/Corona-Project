@@ -7,6 +7,7 @@ import { Country } from './country.model';
 import { User } from './user.model';
 import firebase from 'firebase';
 import { News } from './news.model';
+import { ResourceLoader } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +63,7 @@ export class CoronatrackService {
    }
  
  
-   // 7th day before today calculation
+   // Function to calculate 7th day before today
    generate7Day(){
      let last = new Date(Date.now() - (7 * 24 * 60 * 60 * 1000));
      let day =(last.getDate());
@@ -88,7 +89,7 @@ export class CoronatrackService {
      }
      monT = today.getMonth()+1;
      if(monT < 10){
-       this.monT = ("0"+monT).toString()
+       monT = ("0"+monT).toString()
      }
      else if(monT == 13){
        monT = "01"
@@ -136,7 +137,7 @@ export class CoronatrackService {
      this.router.navigate(['country',id])
    }
  
-   // Get the slug out from the country API
+   // Get the slug out from the country API, to be used on the code
    async getSlug(country:string){
      let coroCoun;
      await this.http.get(this.countrSummary).toPromise().then(data =>{
@@ -155,7 +156,6 @@ export class CoronatrackService {
    }
  
   //Url creator for Country Daily Data information, bar and line graph
-
  generateDailyUrlCntr(slug:string){
 
   this.urlDaily = "https://api.covid19api.com/total/country/"+slug
@@ -254,6 +254,7 @@ export class CoronatrackService {
      };
      localStorage.setItem("user", JSON.stringify(this.user));
      this.updateUserData();
+     location.reload()
    }
  
    private updateUserData(){
@@ -291,6 +292,7 @@ export class CoronatrackService {
      localStorage.removeItem("user");
      this.user = null;
      this.router.navigate(["signin"]);
+     location.reload()
    }
  
    // Add the news to the feed

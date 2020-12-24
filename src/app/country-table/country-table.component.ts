@@ -12,14 +12,16 @@ export class CountryTableComponent implements OnInit {
   coronita;
   coroCoun;
 
+  //Set the columns head for the country table
   headElements = ['Country','New Cases', 'Total Cases', 'New Recoveries','Total Recoveries','New Deaths','Total Deaths'];
 
+  //Use the Activated route and service to navigate to each country data.
   constructor(public service:CoronatrackService,
     public route:ActivatedRoute) { }
 
   async ngOnInit(): Promise<void> {
+    //Obtain the data from each country
     this.coronita = await this.service.getGeneralData()
     this.coroCoun = this.coronita["Countries"]
-    console.log(this.coroCoun)
   }
 }

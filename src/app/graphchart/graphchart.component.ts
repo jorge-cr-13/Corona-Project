@@ -14,6 +14,7 @@ export class GraphchartComponent implements OnInit {
   constructor(public service:CoronatrackService,
     public route:ActivatedRoute) { }
 
+  //Initial values for the line chart
   dtDts = [];
   dtRcv = [];
   dtCss = [];
@@ -40,6 +41,7 @@ export class GraphchartComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    //Get the infrormation from the country or world data
     this.route.params.subscribe(params =>
       this.country = params['id'])
 
@@ -64,6 +66,7 @@ export class GraphchartComponent implements OnInit {
         this.dtRcv.push(this.coronita[i]["TotalRecovered"])
         this.dtCss.push(this.coronita[i]["TotalConfirmed"])
       }
+      //Because the cases are not in order or with timestamp, it is needed to order them
       this.dtCss.sort(function(a, b) {
         return a - b;
       })
@@ -83,10 +86,10 @@ export class GraphchartComponent implements OnInit {
       let cnfrmd:number; 
       let dailyData: String;
       let j = 0;
+      //Find the date of the first case for each country
       let firstCase = await this.service.cntrFrsCs(this.slug)
-      console.log(firstCase)
-      console.log(this.coronita)
 
+      //Find the j value for the first day and start getting data from that day on
       while(this.coronita[j]["Date"]!=firstCase){
         j += 1
       }
